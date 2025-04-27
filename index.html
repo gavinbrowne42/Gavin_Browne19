@@ -1,1 +1,58 @@
-# BC-Code
+var main = function() {
+    var state;
+
+    // Play button
+    $('#play').click(function() {
+        $('#player')[0].play();            // Play the audio
+        $('#message').text('Playing...');  // Update the message
+    });
+
+    // Pause button
+    $('#pause').click(function() {
+        $('#player')[0].pause();           // Pause the audio
+        $('#message').text('Track paused'); // Update the message
+    });
+
+    // Mute button
+    $('#mute').click(function() {
+        $('#player')[0].muted = true;      // Mute the audio
+        $('#message').text('Muted');        // Update the message
+    });
+
+    // Unmute button
+    $('#unmute').click(function() {
+        $('#player')[0].muted = false;     // Unmute the audio
+        $('#message').text('Unmuted');      // Update the message
+    });
+
+    // Stop button
+    $('#stop').click(function() {
+        $('#player')[0].pause();               // Pause the audio
+        $('#player')[0].currentTime = 0;        // Reset the track to the start
+        $('#message').text('Track stopped');    // Update the message
+    });
+
+    // Volume Up button
+    $('#volume-up').click(function() {
+        var currentVolume = $('#player')[0].volume;
+        if (currentVolume < 1) {
+            $('#player')[0].volume = currentVolume + 0.1; // Increase volume
+            $('#message').text('Volume increased');
+        } else {
+            $('#message').text('Volume is at max');
+        }
+    });
+
+    // Volume Down button
+    $('#volume-down').click(function() {
+        var currentVolume = $('#player')[0].volume;
+        if (currentVolume > 0) {
+            $('#player')[0].volume = currentVolume - 0.1; // Decrease volume
+            $('#message').text('Volume decreased');
+        } else {
+            $('#message').text('Volume is at minimum');
+        }
+    });
+}
+
+$(document).ready(main);
